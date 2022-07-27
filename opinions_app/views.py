@@ -7,15 +7,22 @@ from .forms import OpinionForm
 from .models import Opinion
 
 
-@app.route('/')
-def index_view():
+def random_opinion():
     """Выбрать случайное мнение из базы данных."""
     quantity = Opinion.query.count()
-    if not quantity:
-        abort(404)
-    offset_value = randrange(quantity)
-    opinion = Opinion.query.offset(offset_value).first()
-    return render_template('opinion.html', opinion=opinion)
+    if quantity:
+        offset_value = randrange(quantity)
+        opinion = Opinion.query.offset(offset_value).first()
+        return opinion
+
+
+@app.route('/')
+def index_view():
+    """Вывод выбранного случайного мнения."""
+    opinion = random_opinion()
+    if opinion is not None:
+        return render_template('opinion.html', opinion=opinion)
+    abort(404)
 
 
 @app.route('/add', methods=['GET', 'POST'])
