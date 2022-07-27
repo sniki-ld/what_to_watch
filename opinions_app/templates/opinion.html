@@ -1,9 +1,3 @@
-<!--Теперь для главной страницы сайта можно создать новый шаблон;
-он будет наследником base.html.
-{#Директива {% extends "base.html" %} указывает на то, что этот шаблон наследуется от base.html. #}
-{#А выражение {% block ... %} на то, что блоки будут переопределены текущими значениями.#}-->
-<!--Этот шаблон используется для отображения мнения на главной странице
-и на странице конкретного мнения.-->
 {% extends "base.html" %}
 {% block title %}Мнение о фильме # {{ opinion.id }}{%endblock %} 
 {% block content %}
@@ -19,12 +13,6 @@
             <a href="{{ opinion.source }}">{{ opinion.source }}</a>
           {% else %} источник не указан {% endif %}
         </p>
-{#        <p>#}
-{#          Ссылка для друзей:#}
-{#          <a href="{{ url_for('opinion_view', id=opinion.id) }}">{{ url_for('opinion_view', id=opinion.id) }}</a>#}
-{#        </p>#}
-      <!--Для того чтобы получить абсолютный адрес страницы с мнением,
-      передайте в функцию url_for() ещё один параметр — _external=True.-->
         <p>
           Ссылка для друзей:
           <a href="{{ url_for('opinion_view', id=opinion.id, _external=True) }}">{{ url_for('opinion_view', id=opinion.id, _external=True) }}</a>
