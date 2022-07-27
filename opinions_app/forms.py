@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, Length, Optional
 
 
 class OpinionForm(FlaskForm):
+    """Форма для добавления мнения."""
     title = StringField(
         'Введите название фильма',
         validators=[DataRequired(message='Обязательное поле'),
