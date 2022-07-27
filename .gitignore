@@ -131,3 +131,4 @@ dmypy.json
 .vscode
 
 .idea
+.project_before_refactoring
